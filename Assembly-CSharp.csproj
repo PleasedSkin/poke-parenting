@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\Cursor.cs" />
     <Compile Include="Assets\Scripts\SendRequest.cs" />
     <Compile Include="Assets\BonusLink.cs" />
+    <Compile Include="Assets\Scripts\ScriptableObjects\ComportementScriptableObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

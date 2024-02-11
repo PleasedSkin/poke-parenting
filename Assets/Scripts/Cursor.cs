@@ -49,7 +49,7 @@ public class Cursor : MonoBehaviour
     private void MoveCursor()
     {
         itemRectTransform = itemsMenu[this.currentIndex].GetComponent<RectTransform>();
-        transform.position = itemsMenu[this.currentIndex].transform.position - new Vector3(itemRectTransform.sizeDelta.x / 2, 0, 0) - new Vector3(selfRectTransform.sizeDelta.x / 2, 0, 0);
+        transform.position = itemsMenu[this.currentIndex].transform.position - (new Vector3(selfRectTransform.sizeDelta.x / 2, 0, 0) * transform.localScale.x) - new Vector3(itemRectTransform.sizeDelta.x / 2, 0, 0);
     }
 
     public bool PointTowardsCorrespondingMenuItem(Vector3 menuItemPosition)

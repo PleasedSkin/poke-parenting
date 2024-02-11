@@ -1,9 +1,7 @@
-using System;
 using System.Collections;
 using System.Globalization;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -20,6 +18,8 @@ public class SendRequest : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI targetNameTextArea;
 
+    private int currentPokemonNumber;
+
 
     // Start is called before the first frame update
     void Start()
@@ -30,22 +30,27 @@ public class SendRequest : MonoBehaviour
 
     public void TriggerPokemonSearch()
     {
-        StartCoroutine(GetPokemon());
+        StartCoroutine(GetRandomPokemon());
     }
 
 
-    private IEnumerator GetPokemon() 
+    private IEnumerator GetRandomPokemon() 
     {
         var rnd = new System.Random();
-        int randomPokemonNumber  = rnd.Next(1, 1026);
-        using (UnityWebRequest request = UnityWebRequest.Get(apiUrl + "pokemon/" + randomPokemonNumber.ToString()))
+        currentPokemonNumber  = rnd.Next(1, 1026);
+        return GetSpecificPokemon(currentPokemonNumber);
+    }
+
+    private IEnumerator GetSpecificPokemon(int pokemonId) 
+    {
+        using (UnityWebRequest request = UnityWebRequest.Get(apiUrl + "pokemon/" + pokemonId.ToString()))
         {
             yield return request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.Success)
             {
                 Pokemon pokemon = JsonUtility.FromJson<Pokemon>(request.downloadHandler.text);
                 // Debug.Log($"Mon pokémon est {pokemon?.name}, il mesure {pokemon?.height} et pèse {pokemon?.weight}");
-                StartCoroutine(GetPokemonFrenchName(randomPokemonNumber));
+                StartCoroutine(GetPokemonFrenchName(pokemonId));
                 StartCoroutine(LoadImage(pokemon.sprites.front_default));
             } else 
             {
