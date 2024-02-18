@@ -1,19 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class MenuItemLink : BonusLink
 {
     
-    [SerializeField]
-    private ComportementScriptableObject comportementScriptableObject;
+    public string menuType;
 
-
-    void Start() 
-    {
-        GetComponent<TMPro.TMP_Text>().text = $"<link>{comportementScriptableObject.label}</link>";
+    protected override void DeclencherEvent(PointerEventData pointerEventData) {
+        EventManager.TriggerChangeDetailedCommandMenu(menuType, label);
     }
-
 
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cursor : MonoBehaviour
@@ -16,13 +17,7 @@ public class Cursor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         selfRectTransform = GetComponent<RectTransform>();
-
-        // foreach (Transform child in panel.transform)
-        // {
-        //     itemsMenu.Add(child.gameObject);
-        // }
     }
 
 
@@ -30,8 +25,14 @@ public class Cursor : MonoBehaviour
         itemsMenu = new List<GameObject>();
         foreach (Transform child in panel.transform)
         {
-            itemsMenu.Add(child.gameObject);
+            if (child.gameObject.activeSelf) {
+                itemsMenu.Add(child.gameObject);
+            }
         }
+
+        // On positionne le curseur
+        currentIndex = 0;
+        // MoveCursor();
     }
 
 
@@ -41,7 +42,7 @@ public class Cursor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             currentIndex = (currentIndex + 1) % itemsMenu.Count;
-            MoveCursor();
+            // MoveCursor();
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -51,15 +52,18 @@ public class Cursor : MonoBehaviour
             {
                 currentIndex = itemsMenu.Count - 1;
             }
-            MoveCursor();
+            // MoveCursor();
         }
+        MoveCursor();
 
     }
 
     private void MoveCursor()
     {
-        itemRectTransform = itemsMenu[this.currentIndex].GetComponent<RectTransform>();
-        transform.position = itemsMenu[this.currentIndex].transform.position - (new Vector3(selfRectTransform.sizeDelta.x / 2, 0, 0) * transform.localScale.x) - new Vector3(itemRectTransform.sizeDelta.x / 2, 0, 0);
+        if (selfRectTransform != null) {
+            itemRectTransform = itemsMenu[this.currentIndex].GetComponent<RectTransform>();
+            transform.position = itemsMenu[this.currentIndex].transform.position - (new Vector3(selfRectTransform.sizeDelta.x / 2, 0, 0) * transform.localScale.x) - new Vector3(itemRectTransform.sizeDelta.x / 2, 0, 0);
+        }
     }
 
     public bool PointTowardsCorrespondingMenuItem(Vector3 menuItemPosition)

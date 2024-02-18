@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1345902985591504119}
   - component: {fileID: 1761659018607989828}
   - component: {fileID: 6262693076095332479}
-  - component: {fileID: 4981956872985954787}
+  - component: {fileID: -9033698683553046462}
   m_Layer: 5
-  m_Name: MenuItemLink
+  m_Name: DetailedMenuItemLink
   m_TagString: Malus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &4981956872985954787
+--- !u!114 &-9033698683553046462
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,8 +145,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1328787383229439540}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf8cc3f0858f3b949879cee440a65271, type: 3}
+  m_Script: {fileID: 11500000, guid: 950e6a8be0d785348aa434ec6a4aef49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 0}
-  comportementScriptableObject: {fileID: 11400000, guid: 5c75833c2095dcb4cb7e906bc6a2d039, type: 2}
+  label: 
+  menuType: 
+  comportementScriptableObject: {fileID: 0}

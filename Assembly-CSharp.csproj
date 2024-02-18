@@ -66,10 +66,13 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BonusLink.cs" />
     <Compile Include="Assets\Scripts\CommandMenuPanel.cs" />
+    <Compile Include="Assets\Scripts\EventManager.cs" />
+    <Compile Include="Assets\Scripts\Enums\StateEnum.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
+    <Compile Include="Assets\Resources\ScriptableObjects\ComportementScriptableObject.cs" />
     <Compile Include="Assets\Scripts\MenuItemLink.cs" />
     <Compile Include="Assets\Scripts\SendRequest.cs" />
-    <Compile Include="Assets\Scripts\ScriptableObjects\ComportementScriptableObject.cs" />
+    <Compile Include="Assets\Scripts\DetailedMenuItemLink.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
