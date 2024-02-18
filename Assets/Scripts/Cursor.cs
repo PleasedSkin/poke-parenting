@@ -4,7 +4,7 @@ using UnityEngine;
 public class Cursor : MonoBehaviour
 {
 
-    [SerializeField] private GameObject panel;
+    // [SerializeField] private GameObject panel;
     private RectTransform itemRectTransform;
     private RectTransform selfRectTransform;
 
@@ -19,11 +19,21 @@ public class Cursor : MonoBehaviour
 
         selfRectTransform = GetComponent<RectTransform>();
 
+        // foreach (Transform child in panel.transform)
+        // {
+        //     itemsMenu.Add(child.gameObject);
+        // }
+    }
+
+
+    public void SetPanel(GameObject panel) {
+        itemsMenu = new List<GameObject>();
         foreach (Transform child in panel.transform)
         {
             itemsMenu.Add(child.gameObject);
         }
     }
+
 
     // Update is called once per frame
     void Update()

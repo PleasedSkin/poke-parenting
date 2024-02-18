@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\BonusLink.cs" />
+    <Compile Include="Assets\Scripts\CommandMenuPanel.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
     <Compile Include="Assets\Scripts\MenuItemLink.cs" />
     <Compile Include="Assets\Scripts\SendRequest.cs" />
