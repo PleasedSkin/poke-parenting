@@ -64,15 +64,18 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.0f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BonusLink.cs" />
     <Compile Include="Assets\Scripts\CommandMenuPanel.cs" />
     <Compile Include="Assets\Scripts\EventManager.cs" />
-    <Compile Include="Assets\Scripts\Enums\StateEnum.cs" />
     <Compile Include="Assets\Scripts\Cursor.cs" />
+    <Compile Include="Assets\Scripts\Enums\BehaviorStateEnum.cs" />
+    <Compile Include="Assets\Scripts\Utils\BehaviorStateUtils.cs" />
     <Compile Include="Assets\Resources\ScriptableObjects\ComportementScriptableObject.cs" />
     <Compile Include="Assets\Scripts\MenuItemLink.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\SendRequest.cs" />
     <Compile Include="Assets\Scripts\DetailedMenuItemLink.cs" />
+    <Compile Include="Assets\Scripts\BonusMalusLink.cs" />
+    <Compile Include="Assets\Scripts\LevelLabel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

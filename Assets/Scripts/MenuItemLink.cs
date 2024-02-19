@@ -1,13 +1,11 @@
 using UnityEngine.EventSystems;
 
 
-public class MenuItemLink : BonusLink
+public class MenuItemLink : BonusMalusLink
 {
     
-    public string menuType;
-
     protected override void DeclencherEvent(PointerEventData pointerEventData) {
-        EventManager.TriggerChangeDetailedCommandMenu(menuType, label);
+        EventManager.TriggerChangeDetailedCommandMenu(behaviorState, label);
     }
 
 }

@@ -1,4 +1,4 @@
-enum StateEnum
+public enum BehaviorStateEnum
 {
     BONUS,
     MALUS

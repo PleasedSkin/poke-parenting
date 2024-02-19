@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1933391754853334812
+--- !u!1 &4370639165096385137
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,24 +8,24 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3550465078615786826}
-  - component: {fileID: 1920439817469707747}
-  - component: {fileID: 8009924566814365079}
-  - component: {fileID: 2442132192772148482}
+  - component: {fileID: 3895943024414462080}
+  - component: {fileID: 1796957880703745857}
+  - component: {fileID: 5220867647792505079}
+  - component: {fileID: 1250807685990703931}
   m_Layer: 5
-  m_Name: MalusLink
-  m_TagString: Malus
+  m_Name: BonusLink
+  m_TagString: Bonus
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &3550465078615786826
+--- !u!224 &3895943024414462080
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1933391754853334812}
+  m_GameObject: {fileID: 4370639165096385137}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -39,21 +39,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1920439817469707747
+--- !u!222 &1796957880703745857
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1933391754853334812}
+  m_GameObject: {fileID: 4370639165096385137}
   m_CullTransparentMesh: 1
---- !u!114 &8009924566814365079
+--- !u!114 &5220867647792505079
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1933391754853334812}
+  m_GameObject: {fileID: 4370639165096385137}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: <link="Malus">-</link>
+  m_text: <link="Bonus">+</link>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -76,8 +76,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280889783
-  m_fontColor: {r: 0.7169812, g: 0.19072945, b: 0.15895337, a: 1}
+    rgba: 4281432117
+  m_fontColor: {r: 0.20806487, g: 0.4716981, b: 0.19357423, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -94,7 +94,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 18
   m_fontSizeBase: 100
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -136,18 +136,18 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2442132192772148482
+--- !u!114 &1250807685990703931
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1933391754853334812}
+  m_GameObject: {fileID: 4370639165096385137}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8a451da85e5dac4ea697d328c506fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cursor: {fileID: 1770515850903622218, guid: e964a3866eda0924aa4693666ac5598c, type: 3}
-  label: '-'
-  behaviorState: 1
+  label: +
+  behaviorState: 0

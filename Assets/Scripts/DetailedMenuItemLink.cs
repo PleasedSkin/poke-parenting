@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DetailedMenuItemLink : MenuItemLink
 {
@@ -14,6 +13,10 @@ public class DetailedMenuItemLink : MenuItemLink
 
     public void SetComportementScriptableObject(ComportementScriptableObject behaviour) {
         this.comportementScriptableObject = behaviour;
+    }
+
+    protected override void DeclencherEvent(PointerEventData pointerEventData) {
+        EventManager.TriggerSelectDetailedCommandMenuItem(comportementScriptableObject.points);
     }
 
 
