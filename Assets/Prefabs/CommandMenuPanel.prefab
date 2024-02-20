@@ -99,7 +99,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 100, y: 100}
+  m_CellSize: {x: 100, y: 75}
   m_Spacing: {x: 100, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 2
@@ -132,3 +132,6 @@ MonoBehaviour:
   cursor: {fileID: 0}
   menuItemLinkPrefab: {fileID: 1328787383229439540, guid: d6b52ba7fc50dd246a3794b0f9e6c076, type: 3}
   detailedMenuItemLinkPrefab: {fileID: 1328787383229439540, guid: ad20c4eae39dfd741833ba4ad133814e, type: 3}
+  returnLinkPrefab: {fileID: 0}
+  malusLinkPrefab: {fileID: 0}
+  bonusLinkPrefab: {fileID: 0}

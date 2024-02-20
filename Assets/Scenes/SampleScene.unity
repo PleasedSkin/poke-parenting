@@ -441,6 +441,54 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &600487141
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 600487143}
+  - component: {fileID: 600487142}
+  m_Layer: 0
+  m_Name: PokemonHUD
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &600487142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600487141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 470524b7cd07398448b8928e69d3e2d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelLabelComponent: {fileID: 1460395189}
+  nameLabelComponent: {fileID: 1946502801}
+  targetPokemonImage: {fileID: 296680375}
+  defaultPokemonSprite: {fileID: 21300000, guid: 596d9a994ad521045894e9efab94fd25, type: 3}
+--- !u!4 &600487143
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600487141}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 190.55037, y: 256.67435, z: -1.8996015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &672453549
 GameObject:
   m_ObjectHideFlags: 0
@@ -471,8 +519,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiUrl: https://pokeapi.co/api/v2/
-  targetImage: {fileID: 296680375}
-  targetNameTextArea: {fileID: 1946502801}
 --- !u!4 &672453551
 Transform:
   m_ObjectHideFlags: 0
@@ -828,7 +874,6 @@ GameObject:
   - component: {fileID: 1460395188}
   - component: {fileID: 1460395190}
   - component: {fileID: 1460395189}
-  - component: {fileID: 1460395191}
   m_Layer: 5
   m_Name: Level
   m_TagString: Untagged
@@ -953,18 +998,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1460395187}
   m_CullTransparentMesh: 1
---- !u!114 &1460395191
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1460395187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2e58e6b76691c947a094601f5916d36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1547151319
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 
 using System;
+using UnityEngine;
 
 public class EventManager
 {
@@ -8,7 +9,11 @@ public class EventManager
     public static event Action<BehaviorStateEnum, string> ChangeDetailedCommandMenuRequired;
     public static event Action<int> SelectDetailedCommandMenuItem;
     public static event Action<int> BroadcastLevel;
+    public static event Action<string> BroadcastName;
+    public static event Action<Sprite> BroadcastPokemonSprite;
     public static event Action ReturnRequired;
+    public static event Action ResetPokemon;
+    public static event Action GenerateNewPokemon;
 
 
     public static void TriggerChangeTopLevelCommandMenu(string behaviorLabel) // Si mot-clé event (si pas présent => multi cast)
@@ -31,7 +36,23 @@ public class EventManager
         BroadcastLevel?.Invoke(level);
     }
 
+    public static void TriggerBroadcastName(string name) {
+        BroadcastName?.Invoke(name);
+    }
+
     public static void TriggerReturn() {
         ReturnRequired?.Invoke();
+    }
+
+    public static void TriggerResetPokemon() {
+        ResetPokemon?.Invoke();
+    }
+
+    public static void TriggerGenerateNewPokemon() {
+        GenerateNewPokemon?.Invoke();
+    }
+
+    public static void TriggerBroadcastPokemonSprite(Sprite sprite) {
+        BroadcastPokemonSprite?.Invoke(sprite);
     }
 }

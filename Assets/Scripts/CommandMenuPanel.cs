@@ -25,7 +25,7 @@ public class CommandMenuPanel : MonoBehaviour
 
 
     void OnEnable() {
-        cursor.SetPanel(gameObject);  
+        cursor.ResetPositionForPanel(gameObject);  
         EventManager.ChangeTopLevelCommandMenuRequired += ChangeTopLevelCommandMenu;
         EventManager.ChangeDetailedCommandMenuRequired += ChangeDetailedCommandMenu;
         EventManager.ReturnRequired += ReturnToPreviousMenu;
@@ -65,7 +65,7 @@ public class CommandMenuPanel : MonoBehaviour
 
         AddReturnLink();
         
-        cursor.SetPanel(gameObject); // Pour qu'il remette à jour ses positions
+        cursor.ResetPositionForPanel(gameObject); // Pour qu'il remette à jour ses positions
     }
 
     private void ChangeDetailedCommandMenu(BehaviorStateEnum behaviorStateEnum, string detailedMenuType) {
@@ -87,7 +87,7 @@ public class CommandMenuPanel : MonoBehaviour
 
         AddReturnLink();
 
-        cursor.SetPanel(gameObject); // Pour qu'il remette à jour ses positions
+        cursor.ResetPositionForPanel(gameObject); // Pour qu'il remette à jour ses positions
     }
 
     private void AddReturnLink() {
@@ -104,7 +104,7 @@ public class CommandMenuPanel : MonoBehaviour
             DeleteChildren();
 
             ResurrectBonusMalusLinks();
-            cursor.SetPanel(gameObject); // Pour qu'il remette à jour ses positions
+            cursor.ResetPositionForPanel(gameObject); // Pour qu'il remette à jour ses positions
         }
     }
 

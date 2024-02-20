@@ -20,8 +20,7 @@ public class Cursor : MonoBehaviour
         selfRectTransform = GetComponent<RectTransform>();
     }
 
-
-    public void SetPanel(GameObject panel) {
+    public void ResetPositionForPanel(GameObject panel) {
         itemsMenu = new List<GameObject>();
         foreach (Transform child in panel.transform)
         {
@@ -32,7 +31,6 @@ public class Cursor : MonoBehaviour
 
         // On positionne le curseur
         currentIndex = 0;
-        // MoveCursor();
     }
 
 

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Globalization;
 using System.Linq;
-using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -12,20 +11,22 @@ public class SendRequest : MonoBehaviour
     [SerializeField]
     private string apiUrl;
 
-    [SerializeField]
-    private Image targetImage;
-
-    [SerializeField]
-    private TextMeshProUGUI targetNameTextArea;
-
     private int currentPokemonNumber;
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        TriggerPokemonSearch();
+    void OnEnable() {
+        EventManager.GenerateNewPokemon += TriggerPokemonSearch;
     }
+
+    void OnDisable() {
+        EventManager.GenerateNewPokemon -= TriggerPokemonSearch;
+    }
+
+    // Start is called before the first frame update
+    // void Start()
+    // {
+    //     TriggerPokemonSearch();
+    // }
 
 
     public void TriggerPokemonSearch()
@@ -68,7 +69,7 @@ public class SendRequest : MonoBehaviour
             {
                 PokemonSpecies pokemonSpecies = JsonUtility.FromJson<PokemonSpecies>(request.downloadHandler.text);
                 var correspondingName = pokemonSpecies.names.FirstOrDefault(name => name.language.name == "fr");
-                this.targetNameTextArea.text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(correspondingName.name);
+                EventManager.TriggerBroadcastName(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(correspondingName.name));
             } else 
             {
                 Debug.LogError("Une erreur est survenue");
@@ -86,7 +87,7 @@ public class SendRequest : MonoBehaviour
                 Texture2D myTexture = ((DownloadHandlerTexture) request.downloadHandler).texture;
                 Sprite newSprite = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
                 newSprite.texture.filterMode = FilterMode.Point;
-                targetImage.sprite = newSprite;
+                EventManager.TriggerBroadcastPokemonSprite(newSprite);
             } else 
             {
                 Debug.LogError("Une erreur est survenue");
