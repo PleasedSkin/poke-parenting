@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &76247985
 RectTransform:
   m_ObjectHideFlags: 0
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 596d9a994ad521045894e9efab94fd25, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1043,7 +1043,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5792142425154873550, guid: b3a4f5a249fbb554387ae82a2ff4a894, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -159
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 5792142425154873550, guid: b3a4f5a249fbb554387ae82a2ff4a894, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1070,13 +1070,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7033183894467383602, guid: 16083b03388c85d42bd415ffe59eea52, type: 3}
     - target: {fileID: 8734169383975356387, guid: b3a4f5a249fbb554387ae82a2ff4a894, type: 3}
-      propertyPath: menuItemLinkPrefab
+      propertyPath: bonusLinkPrefab
       value: 
-      objectReference: {fileID: 1328787383229439540, guid: d6b52ba7fc50dd246a3794b0f9e6c076, type: 3}
+      objectReference: {fileID: 4370639165096385137, guid: 52dee7a2ce8c1fc4a833a710b03e9983, type: 3}
     - target: {fileID: 8734169383975356387, guid: b3a4f5a249fbb554387ae82a2ff4a894, type: 3}
-      propertyPath: detailedMenuItemLinkPrefab
+      propertyPath: malusLinkPrefab
       value: 
-      objectReference: {fileID: 1328787383229439540, guid: ad20c4eae39dfd741833ba4ad133814e, type: 3}
+      objectReference: {fileID: 1933391754853334812, guid: 9c762f1e30028f44688843fe0b6283b1, type: 3}
+    - target: {fileID: 8734169383975356387, guid: b3a4f5a249fbb554387ae82a2ff4a894, type: 3}
+      propertyPath: returnLinkPrefab
+      value: 
+      objectReference: {fileID: 3572324999847549275, guid: ca9337134a7854749aac7a35e3b4cbf0, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1254,7 +1258,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\t"
+  m_text: Oeuf
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e46566765f343de4ca01e2312183dadf, type: 2}
   m_sharedMaterial: {fileID: 341040260385887693, guid: e46566765f343de4ca01e2312183dadf, type: 2}
@@ -1523,7 +1527,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4484733013821943918, guid: e964a3866eda0924aa4693666ac5598c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -159
+      value: -200
       objectReference: {fileID: 0}
     - target: {fileID: 4484733013821943918, guid: e964a3866eda0924aa4693666ac5598c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

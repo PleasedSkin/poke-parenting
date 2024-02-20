@@ -8,6 +8,7 @@ public class EventManager
     public static event Action<BehaviorStateEnum, string> ChangeDetailedCommandMenuRequired;
     public static event Action<int> SelectDetailedCommandMenuItem;
     public static event Action<int> BroadcastLevel;
+    public static event Action ReturnRequired;
 
 
     public static void TriggerChangeTopLevelCommandMenu(string behaviorLabel) // Si mot-clé event (si pas présent => multi cast)
@@ -28,5 +29,9 @@ public class EventManager
 
     public static void TriggerBroadcastLevel(int level) {
         BroadcastLevel?.Invoke(level);
+    }
+
+    public static void TriggerReturn() {
+        ReturnRequired?.Invoke();
     }
 }
