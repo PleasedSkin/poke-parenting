@@ -39,13 +39,19 @@ public class GameManager : MonoBehaviour
             EventManager.TriggerGenerateNewPokemon();
         } else if (level == 0) {
             EventManager.TriggerResetPokemon();
-        } else if (level == 100) {
-            EventManager.TriggerResetPokemon();
-            starsAmount += 1;
-            // TODO : TriggerBroadcastStarsAmount
+        } else if (oldLevel == 100 && newLevel == 100) {
+            HandlePokemonAchievment();
         } else {
             HandlePossibleEvolution();
         }	
+    }
+
+    private void HandlePokemonAchievment() {
+        EventManager.TriggerResetPokemon();
+        level = 0;
+        EventManager.TriggerBroadcastLevel(level);
+        starsAmount += 1;
+        // TODO : TriggerBroadcastStarsAmount
     }
 
     private void HandlePossibleEvolution() {
