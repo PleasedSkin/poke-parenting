@@ -24,3 +24,15 @@ Modèle
     - les seconds mènent aux sous-menus avec détails
     - les derniers impactent les niveaux au clic
 -> bouton retour pour revenir au menu de départ 
+
+
+--> TODO 
+    -> mettre en gras quand item sous le curseur
+    -> petite anim si item sélectionné ?
+    -> changement couleur de fond suivant qu'on va vers les niveaux + ou - ou alors juste si on est dans les sections + ou 6
+    -> blink si perte niveaux
+    -> animation de "soin" ou de "boost" si niveaux en +
+    -> gestion évolutions
+    -> animation évolution
+    -> menu principal
+    -> sauvegarde et chargement

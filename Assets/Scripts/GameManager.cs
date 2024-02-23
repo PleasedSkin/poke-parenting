@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         level = 0;
         EventManager.TriggerBroadcastLevel(level);
         starsAmount += 1;
-        // TODO : TriggerBroadcastStarsAmount
+        EventManager.TriggerBroadcastStarsAmount(starsAmount);
     }
 
     private void HandlePossibleEvolution() {

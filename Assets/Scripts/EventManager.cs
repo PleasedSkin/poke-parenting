@@ -11,6 +11,7 @@ public class EventManager
     public static event Action<int> BroadcastLevel;
     public static event Action<string> BroadcastName;
     public static event Action<Sprite> BroadcastPokemonSprite;
+    public static event Action<int> BroadcastStarsAmount;
     public static event Action ReturnRequired;
     public static event Action ResetPokemon;
     public static event Action GenerateNewPokemon;
@@ -54,5 +55,9 @@ public class EventManager
 
     public static void TriggerBroadcastPokemonSprite(Sprite sprite) {
         BroadcastPokemonSprite?.Invoke(sprite);
+    }
+
+    public static void TriggerBroadcastStarsAmount(int starsAmount) {
+        BroadcastStarsAmount?.Invoke(starsAmount);
     }
 }

@@ -19,11 +19,15 @@ public class PokemonHUD : MonoBehaviour
     [SerializeField]
     private Sprite defaultPokemonSprite;
 
+    [SerializeField]
+    private TextMeshProUGUI starsLabelComponent;
+
 
     void OnEnable() {
         EventManager.BroadcastLevel += UpdateLevelLabel;
         EventManager.BroadcastName += UpdateNameLabel;
         EventManager.BroadcastPokemonSprite += UpdatePokemonSprite;
+        EventManager.BroadcastStarsAmount += UpdateStarsLabel;
         EventManager.ResetPokemon += ResetPokemon;
     }
 
@@ -34,6 +38,10 @@ public class PokemonHUD : MonoBehaviour
 
     private void UpdateNameLabel(string name) {
         nameLabelComponent.SetText(name);
+    }
+
+    private void UpdateStarsLabel(int starsAmount) {
+        starsLabelComponent.SetText($" : {starsAmount}");
     }
 
     private void ResetPokemon() {
@@ -50,6 +58,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.BroadcastLevel -= UpdateLevelLabel;
         EventManager.BroadcastName -= UpdateNameLabel;
         EventManager.BroadcastPokemonSprite -= UpdatePokemonSprite;
+        EventManager.BroadcastStarsAmount -= UpdateStarsLabel;
         EventManager.ResetPokemon -= ResetPokemon;
     }
 
