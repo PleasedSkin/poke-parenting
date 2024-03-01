@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EventManager
@@ -10,12 +11,15 @@ public class EventManager
     public static event Action<int> SelectDetailedCommandMenuItem;
     public static event Action<int> BroadcastLevel;
     public static event Action<string> BroadcastName;
+    public static event Action<int> BroadcastPokemonNumber;
     public static event Action<Sprite> BroadcastPokemonSprite;
     public static event Action<int> BroadcastStarsAmount;
     public static event Action ReturnRequired;
     public static event Action ResetPokemon;
     public static event Action GenerateNewPokemon;
     public static event Action DisplayLoadingSprite;
+    public static event Action<Dictionary<int, int>> BroadcastEvolutionDictionary;
+    public static event Action<int> GeneratePokemonEvolution;
 
 
     public static void TriggerChangeTopLevelCommandMenu(string behaviorLabel) // Si mot-clé event (si pas présent => multi cast)
@@ -65,4 +69,17 @@ public class EventManager
     public static void TriggerDisplayLoadingSprite() {
         DisplayLoadingSprite?.Invoke();
     }
+
+    public static void TriggerBroadcastEvolutionDictionary(Dictionary<int, int> dico) {
+        BroadcastEvolutionDictionary?.Invoke(dico);
+    }
+
+    public static void TriggerBroadcastPokemonNumber(int pokemonNumber) {
+        BroadcastPokemonNumber?.Invoke(pokemonNumber);
+    }
+
+    public static void TriggerGeneratePokemonEvolution(int targetPokemonNumber) {
+        GeneratePokemonEvolution?.Invoke(targetPokemonNumber);
+    }
+
 }

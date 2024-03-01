@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -6,20 +7,35 @@ public class GameManager : MonoBehaviour
 
     private int level = 0;
     private int starsAmount = 0;
+    private int currentPokemonNumber;
+
+    private Dictionary<int, int> evolutionDictionary = new Dictionary<int, int>();
 
     
 
     void OnEnable() {
         EventManager.SelectDetailedCommandMenuItem += SelectDetailedCommandMenuItem;
+        EventManager.BroadcastEvolutionDictionary += UpdateEvolutionDictionary;
+        EventManager.BroadcastPokemonNumber += UpdatePokemonNumber;
     }
 
     void OnDisable() {
         EventManager.SelectDetailedCommandMenuItem -= SelectDetailedCommandMenuItem;
+        EventManager.BroadcastEvolutionDictionary -= UpdateEvolutionDictionary;
+        EventManager.BroadcastPokemonNumber -= UpdatePokemonNumber;
     }
 
   
     void SelectDetailedCommandMenuItem(int levelsAmount) {
         SetLevel(levelsAmount);
+    }
+
+    private void UpdateEvolutionDictionary(Dictionary<int, int> dico) {
+        evolutionDictionary = dico;
+    }
+
+    private void UpdatePokemonNumber(int pokemonNumber) {
+        currentPokemonNumber = pokemonNumber;
     }
 
 
@@ -55,23 +71,35 @@ public class GameManager : MonoBehaviour
     }
 
     private void HandlePossibleEvolution() {
-        // TODO
+        var relevantLevel = 0;
+        foreach (var evolutionLevel in evolutionDictionary.Keys)
+        {
+            if (level >= evolutionLevel) {
+                relevantLevel = evolutionLevel;
+                Debug.Log(relevantLevel);
+            }
+        }
 
-        // 	var niveaux_evol = evolution_infos_dict.keys()
-	// 	var niveau_pertinent = 0
-	// 	for niv in niveaux_evol:
-	// 		if niv == null:
-	// 			niveau_pertinent = 0
-	// 		elif level >= niv:
-	// 			niveau_pertinent = niv
-	// 	print_debug(niveau_pertinent)
+        if (relevantLevel > 0) {
+            var targetPokemonNumber = evolutionDictionary.GetValueOrDefault(relevantLevel);
+            if (targetPokemonNumber != currentPokemonNumber && !IsHigherInEvolutionTree()) {
+                currentPokemonNumber = targetPokemonNumber;
+                EventManager.TriggerGeneratePokemonEvolution(currentPokemonNumber);
+            }
+        }
+    }
 
-	// 	if (niveau_pertinent > 0):
-	// 		evolution_pokemon_number = evolution_infos_dict.get(niveau_pertinent)
-	// 		if evolution_pokemon_number != pokemon_number && _is_not_in_upper_evolution_tree():
-	// 			pokemon_number = evolution_pokemon_number
-	// 			is_evolving = true
-	// 			_generate_targeted_pokemon(evolution_pokemon_number)
+    private bool IsHigherInEvolutionTree() {
+        var result = false;
+
+        foreach (var evolutionLevel in evolutionDictionary.Keys)
+        {
+            if (evolutionDictionary.GetValueOrDefault(evolutionLevel) == currentPokemonNumber && level < evolutionLevel) {
+                return true;
+            }
+        }
+
+        return result;
     }
 
 }
