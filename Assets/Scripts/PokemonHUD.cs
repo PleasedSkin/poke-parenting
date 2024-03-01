@@ -17,6 +17,9 @@ public class PokemonHUD : MonoBehaviour
     private Image targetPokemonImage;
 
     [SerializeField]
+    private Image loadingImage;
+
+    [SerializeField]
     private Sprite defaultPokemonSprite;
 
     [SerializeField]
@@ -29,6 +32,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.BroadcastPokemonSprite += UpdatePokemonSprite;
         EventManager.BroadcastStarsAmount += UpdateStarsLabel;
         EventManager.ResetPokemon += ResetPokemon;
+        EventManager.DisplayLoadingSprite += DisplayLoadingSprite;
     }
 
 
@@ -50,7 +54,14 @@ public class PokemonHUD : MonoBehaviour
     }
 
     private void UpdatePokemonSprite(Sprite sprite) {
+        loadingImage.gameObject.SetActive(false);
+        targetPokemonImage.gameObject.SetActive(true);
         targetPokemonImage.sprite = sprite;
+    }
+
+    private void DisplayLoadingSprite() {
+        targetPokemonImage.gameObject.SetActive(false);
+        loadingImage.gameObject.SetActive(true);
     }
 
 
@@ -60,6 +71,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.BroadcastPokemonSprite -= UpdatePokemonSprite;
         EventManager.BroadcastStarsAmount -= UpdateStarsLabel;
         EventManager.ResetPokemon -= ResetPokemon;
+        EventManager.DisplayLoadingSprite -= DisplayLoadingSprite;
     }
 
 }

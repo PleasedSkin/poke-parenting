@@ -42,10 +42,16 @@ public class SendRequest : MonoBehaviour
         return GetSpecificPokemon(currentPokemonNumber);
     }
 
+    private void HandleLoading() {
+        EventManager.TriggerBroadcastName("?");
+        EventManager.TriggerDisplayLoadingSprite();
+    }
+
     private IEnumerator GetSpecificPokemon(int pokemonId) 
     {
         using (UnityWebRequest request = UnityWebRequest.Get(apiUrl + "pokemon/" + pokemonId.ToString()))
         {
+            HandleLoading();
             yield return request.SendWebRequest();
             if (request.result == UnityWebRequest.Result.Success)
             {

@@ -15,6 +15,7 @@ public class EventManager
     public static event Action ReturnRequired;
     public static event Action ResetPokemon;
     public static event Action GenerateNewPokemon;
+    public static event Action DisplayLoadingSprite;
 
 
     public static void TriggerChangeTopLevelCommandMenu(string behaviorLabel) // Si mot-clé event (si pas présent => multi cast)
@@ -59,5 +60,9 @@ public class EventManager
 
     public static void TriggerBroadcastStarsAmount(int starsAmount) {
         BroadcastStarsAmount?.Invoke(starsAmount);
+    }
+
+    public static void TriggerDisplayLoadingSprite() {
+        DisplayLoadingSprite?.Invoke();
     }
 }

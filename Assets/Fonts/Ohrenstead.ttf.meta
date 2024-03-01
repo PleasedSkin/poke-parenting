@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8249c1b36f3e0684aa27b501b1bc2323
+guid: 611e7206455c38d48a865dc0fb7f6592
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Pokemon Pixel Font
+  - Ohrenstead
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

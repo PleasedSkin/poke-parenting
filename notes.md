@@ -36,3 +36,4 @@ Modèle
     -> animation évolution
     -> menu principal
     -> sauvegarde et chargement
+    -> shiny
