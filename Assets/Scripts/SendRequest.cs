@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Runtime.Serialization;
-using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -66,6 +65,7 @@ public class SendRequest : MonoBehaviour
         if (!isEvolving) {
             var rnd = new System.Random();
             isShiny = rnd.Next(1, 101) % 100 == 0;
+            EventManager.TriggerBroadcastShinyInfo(isShiny);
             if (isShiny) {
                 Debug.Log("Quelle chance ! un Shiny !");
             }

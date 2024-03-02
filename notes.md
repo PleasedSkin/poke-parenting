@@ -28,10 +28,11 @@ Modèle
 
 --> TODO 
     -> menu principal
+    - shader effet si évolution suite évol
+    - shader effet si shiny
     -> sauvegarde et chargement
     -> changement couleur de fond suivant qu'on va vers les niveaux + ou - ou alors juste si on est dans les sections + ou 6
     -> blink si perte niveaux
     -> animation de "soin" ou de "boost" si niveaux en + avec scale du niveau et des étoiles
     -> shine étoile quand gain
-    -> shiny avec animation (shader)
     -> sons

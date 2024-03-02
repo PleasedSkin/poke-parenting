@@ -20,6 +20,7 @@ public class EventManager
     public static event Action DisplayLoadingSprite;
     public static event Action<Dictionary<int, int>> BroadcastEvolutionDictionary;
     public static event Action<int> GeneratePokemonEvolution;
+    public static event Action<bool> BroadcastShinyInfo;
 
 
     public static void TriggerChangeTopLevelCommandMenu(string behaviorLabel) // Si mot-clé event (si pas présent => multi cast)
@@ -80,6 +81,10 @@ public class EventManager
 
     public static void TriggerGeneratePokemonEvolution(int targetPokemonNumber) {
         GeneratePokemonEvolution?.Invoke(targetPokemonNumber);
+    }
+
+    public static void TriggerBroadcastShinyInfo(bool isShiny) {
+        BroadcastShinyInfo?.Invoke(isShiny);
     }
 
 }

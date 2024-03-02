@@ -29,6 +29,11 @@ public class PokemonHUD : MonoBehaviour
     [SerializeField]
     private Material whiteMaterial;
 
+    [SerializeField]
+    private ParticleSystem shinyParticleSystem;
+
+    private bool isPokemonShiny;
+
 
     void OnEnable() {
         EventManager.BroadcastLevel += UpdateLevelLabel;
@@ -37,8 +42,8 @@ public class PokemonHUD : MonoBehaviour
         EventManager.BroadcastStarsAmount += UpdateStarsLabel;
         EventManager.ResetPokemon += ResetPokemon;
         EventManager.DisplayLoadingSprite += DisplayLoadingSprite;
+        EventManager.BroadcastShinyInfo += DisplayShinyParticles;
     }
-
 
     private void UpdateLevelLabel(int level) {
         levelLabelComponent.SetText($"Niveau : {level}");
@@ -65,6 +70,11 @@ public class PokemonHUD : MonoBehaviour
             loadingImage.gameObject.SetActive(false);
             targetPokemonImage.gameObject.SetActive(true);
             targetPokemonImage.sprite = sprite;
+            if (isPokemonShiny) {
+                shinyParticleSystem.Play();
+            } else {
+                shinyParticleSystem.Stop();
+            }
         }
     }
 
@@ -73,15 +83,15 @@ public class PokemonHUD : MonoBehaviour
         loadingImage.gameObject.SetActive(true);
     }
 
-    private void DisplayEvolutionSprite() {
-        
-    }
-
     private IEnumerator EvolutionCoroutine(Sprite evolutionSprite)
     {
         yield return new WaitForSeconds(1f);
         targetPokemonImage.material = null;
         targetPokemonImage.sprite = evolutionSprite;
+    }
+
+    private void DisplayShinyParticles(bool isShiny) {
+        isPokemonShiny = isShiny;
     }
 
 
@@ -92,6 +102,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.BroadcastStarsAmount -= UpdateStarsLabel;
         EventManager.ResetPokemon -= ResetPokemon;
         EventManager.DisplayLoadingSprite -= DisplayLoadingSprite;
+        EventManager.BroadcastShinyInfo -= DisplayShinyParticles;
     }
 
 }
