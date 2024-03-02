@@ -52,7 +52,9 @@ public class SendRequest : MonoBehaviour
 
     private void HandleLoading(bool isEvolving) {
         EventManager.TriggerBroadcastName(isEvolving ? "Il évolue !" :  "?");
-        EventManager.TriggerDisplayLoadingSprite();
+        if (!isEvolving) {
+            EventManager.TriggerDisplayLoadingSprite();
+        }
     }
 
     private IEnumerator GetSpecificPokemon(int pokemonId, bool isEvolving = false) 
@@ -64,6 +66,9 @@ public class SendRequest : MonoBehaviour
         if (!isEvolving) {
             var rnd = new System.Random();
             isShiny = rnd.Next(1, 101) % 100 == 0;
+            if (isShiny) {
+                Debug.Log("Quelle chance ! un Shiny !");
+            }
         }
 
         using (UnityWebRequest request = UnityWebRequest.Get(apiUrl + "pokemon/" + pokemonId.ToString()))
@@ -75,7 +80,7 @@ public class SendRequest : MonoBehaviour
                 Pokemon pokemon = JsonUtility.FromJson<Pokemon>(request.downloadHandler.text);
                 // Debug.Log($"Mon pokémon est {pokemon?.name}, il mesure {pokemon?.height} et pèse {pokemon?.weight}");
                 StartCoroutine(GetPokemonFrenchName(pokemonId));
-                StartCoroutine(LoadImage(isShiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default));
+                StartCoroutine(LoadImage(isShiny ? pokemon.sprites.front_shiny : pokemon.sprites.front_default, isEvolving));
             } else 
             {
                 Debug.LogError("Une erreur est survenue");
@@ -104,7 +109,7 @@ public class SendRequest : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadImage(string url) 
+    private IEnumerator LoadImage(string url, bool isEvolving) 
     {
         using (UnityWebRequest request = UnityWebRequestTexture.GetTexture(url))
         {
@@ -114,7 +119,7 @@ public class SendRequest : MonoBehaviour
                 Texture2D myTexture = ((DownloadHandlerTexture) request.downloadHandler).texture;
                 Sprite newSprite = Sprite.Create(myTexture, new Rect(0, 0, myTexture.width, myTexture.height), new Vector2(0.5f, 0.5f));
                 newSprite.texture.filterMode = FilterMode.Point;
-                EventManager.TriggerBroadcastPokemonSprite(newSprite);
+                EventManager.TriggerBroadcastPokemonSprite(newSprite, isEvolving);
             } else 
             {
                 Debug.LogError("Une erreur est survenue");

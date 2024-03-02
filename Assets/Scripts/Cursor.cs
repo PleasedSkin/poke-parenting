@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Cursor : MonoBehaviour
@@ -12,6 +11,7 @@ public class Cursor : MonoBehaviour
     private int currentIndex = 0;
 
     private List<GameObject> itemsMenu = new List<GameObject>();
+
 
 
     // Start is called before the first frame update
@@ -59,8 +59,12 @@ public class Cursor : MonoBehaviour
     private void MoveCursor()
     {
         if (selfRectTransform != null) {
-            itemRectTransform = itemsMenu[this.currentIndex].GetComponent<RectTransform>();
-            transform.position = itemsMenu[this.currentIndex].transform.position - (new Vector3(selfRectTransform.sizeDelta.x / 2, 0, 0) * transform.localScale.x) - new Vector3(itemRectTransform.sizeDelta.x / 2, 0, 0);
+            itemRectTransform = itemsMenu[currentIndex].GetComponent<RectTransform>();
+            for (int i = 0; i < itemsMenu.Count; i++) {
+                itemsMenu[i].GetComponent<TMPro.TMP_Text>().fontStyle = (i == currentIndex) ? TMPro.FontStyles.Bold : TMPro.FontStyles.Normal;
+            }
+            selfRectTransform.position = itemRectTransform.position;
+            selfRectTransform.anchoredPosition -= new Vector2((itemRectTransform.sizeDelta.x + (selfRectTransform.sizeDelta.x * transform.localScale.x)) / 2, 0);
         }
     }
 

@@ -60,7 +60,7 @@ public class CommandMenuPanel : MonoBehaviour
             menuItemLink.GetComponent<MenuItemLink>().SetBehaviorState(behaviorState);
             menuItemLink.GetComponent<MenuItemLink>().SetLabel(f.Name);
             menuItemLink.GetComponent<MenuItemLink>().SetCursor(cursor);
-            menuItemLink.transform.SetParent(transform);
+            menuItemLink.transform.SetParent(transform, false);
 		}
 
         AddReturnLink();
@@ -82,7 +82,7 @@ public class CommandMenuPanel : MonoBehaviour
             detailedMenuItemLink.GetComponent<DetailedMenuItemLink>().SetBehaviorState(behaviorStateEnum);
             detailedMenuItemLink.GetComponent<DetailedMenuItemLink>().SetComportementScriptableObject(comportementSo);
             detailedMenuItemLink.GetComponent<DetailedMenuItemLink>().SetCursor(cursor);
-            detailedMenuItemLink.transform.SetParent(transform);
+            detailedMenuItemLink.transform.SetParent(transform, false);
 		}
 
         AddReturnLink();
@@ -93,7 +93,7 @@ public class CommandMenuPanel : MonoBehaviour
     private void AddReturnLink() {
         var returnLink = Instantiate(returnLinkPrefab, new Vector3(0, 0, 0), Quaternion.identity);
         returnLink.GetComponent<ReturnLink>().SetCursor(cursor);
-        returnLink.transform.SetParent(transform);
+        returnLink.transform.SetParent(transform, false);
     }
 
     private void ReturnToPreviousMenu() {
@@ -111,9 +111,9 @@ public class CommandMenuPanel : MonoBehaviour
     private void ResurrectBonusMalusLinks() {
 
         Action<GameObject> CreationLambda = prefab => {
-            var malusLink = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
-            malusLink.GetComponent<BonusMalusLink>().SetCursor(cursor);
-            malusLink.transform.SetParent(transform);
+            var bonuMalusLink = Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity);
+            bonuMalusLink.GetComponent<BonusMalusLink>().SetCursor(cursor);
+            bonuMalusLink.transform.SetParent(transform, false);
         };
 
         CreationLambda(malusLinkPrefab);

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -25,6 +26,9 @@ public class PokemonHUD : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI starsLabelComponent;
 
+    [SerializeField]
+    private Material whiteMaterial;
+
 
     void OnEnable() {
         EventManager.BroadcastLevel += UpdateLevelLabel;
@@ -50,18 +54,34 @@ public class PokemonHUD : MonoBehaviour
 
     private void ResetPokemon() {
         UpdateNameLabel(DEFAULT_POKEMON_NAME);
-        UpdatePokemonSprite(defaultPokemonSprite);
+        UpdatePokemonSprite(defaultPokemonSprite, false);
     }
 
-    private void UpdatePokemonSprite(Sprite sprite) {
-        loadingImage.gameObject.SetActive(false);
-        targetPokemonImage.gameObject.SetActive(true);
-        targetPokemonImage.sprite = sprite;
+    private void UpdatePokemonSprite(Sprite sprite, bool isEvolving) {
+        if (isEvolving) {
+            targetPokemonImage.material = whiteMaterial;
+            StartCoroutine(EvolutionCoroutine(sprite));
+        } else {
+            loadingImage.gameObject.SetActive(false);
+            targetPokemonImage.gameObject.SetActive(true);
+            targetPokemonImage.sprite = sprite;
+        }
     }
 
     private void DisplayLoadingSprite() {
         targetPokemonImage.gameObject.SetActive(false);
         loadingImage.gameObject.SetActive(true);
+    }
+
+    private void DisplayEvolutionSprite() {
+        
+    }
+
+    private IEnumerator EvolutionCoroutine(Sprite evolutionSprite)
+    {
+        yield return new WaitForSeconds(1f);
+        targetPokemonImage.material = null;
+        targetPokemonImage.sprite = evolutionSprite;
     }
 
 
