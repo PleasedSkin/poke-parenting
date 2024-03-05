@@ -27,7 +27,6 @@ Modèle
 
 
 --> TODO 
-    -> changement couleur de fond suivant qu'on va vers les niveaux + ou - ou alors juste si on est dans les sections + ou 6
     - shader effet si évolution suite évol
     - shader effet si shiny
     -> blink si perte niveaux
