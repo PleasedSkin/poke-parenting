@@ -22,11 +22,13 @@ public class SendRequest : MonoBehaviour
     void OnEnable() {
         EventManager.GenerateNewPokemon += TriggerPokemonSearch;
         EventManager.GeneratePokemonEvolution += TriggerPokemonEvolution;
+        EventManager.GenerateTargetPokemonFromSaveData += TriggerPokemonTargetedSearch;
     }
 
     void OnDisable() {
         EventManager.GenerateNewPokemon -= TriggerPokemonSearch;
         EventManager.GeneratePokemonEvolution -= TriggerPokemonEvolution;
+        EventManager.GenerateTargetPokemonFromSaveData -= TriggerPokemonTargetedSearch;
     }
 
 
@@ -38,6 +40,11 @@ public class SendRequest : MonoBehaviour
     private void TriggerPokemonEvolution(int targetPokemonNumber)
     {
         StartCoroutine(GetSpecificPokemon(targetPokemonNumber, true));
+    }
+
+    private void TriggerPokemonTargetedSearch(int targetPokemonNumber)
+    {
+        StartCoroutine(GetSpecificPokemon(targetPokemonNumber, false, true));
     }
 
 
@@ -56,13 +63,13 @@ public class SendRequest : MonoBehaviour
         }
     }
 
-    private IEnumerator GetSpecificPokemon(int pokemonId, bool isEvolving = false) 
+    private IEnumerator GetSpecificPokemon(int pokemonId, bool isEvolving = false, bool isLoadedFromSaveData = false) 
     {
 
         evolutionDictionary = new Dictionary<int, int>();
         EventManager.TriggerBroadcastEvolutionDictionary(evolutionDictionary);
 
-        if (!isEvolving) {
+        if (!isEvolving && !isLoadedFromSaveData) {
             var rnd = new System.Random();
             isShiny = rnd.Next(1, 101) % 100 == 0;
             EventManager.TriggerBroadcastShinyInfo(isShiny);

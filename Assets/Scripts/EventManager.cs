@@ -17,6 +17,7 @@ public class EventManager
     public static event Action ReturnRequired;
     public static event Action ResetPokemon;
     public static event Action GenerateNewPokemon;
+    public static event Action<int> GenerateTargetPokemonFromSaveData;
     public static event Action DisplayLoadingSprite;
     public static event Action<Dictionary<int, int>> BroadcastEvolutionDictionary;
     public static event Action<int> GeneratePokemonEvolution;
@@ -57,6 +58,10 @@ public class EventManager
 
     public static void TriggerGenerateNewPokemon() {
         GenerateNewPokemon?.Invoke();
+    }
+
+    public static void TriggerGenerateTargetPokemonFromSaveData(int pokemonNumber) {
+        GenerateTargetPokemonFromSaveData?.Invoke(pokemonNumber);
     }
 
     public static void TriggerBroadcastPokemonSprite(Sprite sprite, bool isEvolving) {

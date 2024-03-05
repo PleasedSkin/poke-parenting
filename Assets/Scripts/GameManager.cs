@@ -1,28 +1,44 @@
+using System;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
+[Serializable]
 public class GameManager : MonoBehaviour
 {
+    private static readonly string MAIN_SCENE_NAME = "MainScene";
+    
+    // Save data labels
+    private static readonly string LEVEL_SAVE_LABEL = "Level";
+    private static readonly string STARS_AMOUNT_SAVE_LABEL = "StarsAmount";
+    private static readonly string POKEMON_NUMBER_SAVE_LABEL = "PokemonNumber";
+    private static readonly string IS_SHINY_SAVE_LABEL = "IsShiny";
 
     private int level = 0;
     private int starsAmount = 0;
-    private int currentPokemonNumber;
+    private int currentPokemonNumber = 0;
+    private bool isShiny = false;
 
     private Dictionary<int, int> evolutionDictionary = new Dictionary<int, int>();
 
-    
+    void Awake() {
+       DontDestroyOnLoad(gameObject); 
+    }
 
     void OnEnable() {
         EventManager.SelectDetailedCommandMenuItem += SelectDetailedCommandMenuItem;
         EventManager.BroadcastEvolutionDictionary += UpdateEvolutionDictionary;
         EventManager.BroadcastPokemonNumber += UpdatePokemonNumber;
+        EventManager.BroadcastShinyInfo += UpdateShinyState;
+        SceneManager.sceneLoaded += InitializePokemonIfNeeded;
     }
 
     void OnDisable() {
         EventManager.SelectDetailedCommandMenuItem -= SelectDetailedCommandMenuItem;
         EventManager.BroadcastEvolutionDictionary -= UpdateEvolutionDictionary;
         EventManager.BroadcastPokemonNumber -= UpdatePokemonNumber;
+        EventManager.BroadcastShinyInfo -= UpdateShinyState;
+        SceneManager.sceneLoaded -= InitializePokemonIfNeeded;
     }
 
   
@@ -36,6 +52,14 @@ public class GameManager : MonoBehaviour
 
     private void UpdatePokemonNumber(int pokemonNumber) {
         currentPokemonNumber = pokemonNumber;
+        PlayerPrefs.SetInt(POKEMON_NUMBER_SAVE_LABEL, pokemonNumber);
+        SaveData();
+    }
+
+    private void UpdateShinyState(bool shinyState) {
+        isShiny = shinyState;
+        PlayerPrefs.SetInt(IS_SHINY_SAVE_LABEL, shinyState ? 1 : 0);
+        SaveData();
     }
 
 
@@ -44,6 +68,8 @@ public class GameManager : MonoBehaviour
         level += levelsAmount;
         level = Mathf.Clamp(level, 0, 100);
         EventManager.TriggerBroadcastLevel(level);
+        PlayerPrefs.SetInt(LEVEL_SAVE_LABEL, level);
+        SaveData();
 
         ReactToLevelChange(oldLevel, level);
     }
@@ -67,6 +93,8 @@ public class GameManager : MonoBehaviour
         level = 0;
         EventManager.TriggerBroadcastLevel(level);
         starsAmount += 1;
+        PlayerPrefs.SetInt(STARS_AMOUNT_SAVE_LABEL, starsAmount);
+        SaveData();
         EventManager.TriggerBroadcastStarsAmount(starsAmount);
     }
 
@@ -100,6 +128,39 @@ public class GameManager : MonoBehaviour
         }
 
         return result;
+    }
+
+    private void SaveData() {
+        PlayerPrefs.Save();
+    }
+
+    private void LoadData() {
+        level = PlayerPrefs.GetInt(LEVEL_SAVE_LABEL);
+        starsAmount = PlayerPrefs.GetInt(STARS_AMOUNT_SAVE_LABEL);
+        currentPokemonNumber = PlayerPrefs.GetInt(POKEMON_NUMBER_SAVE_LABEL);
+        isShiny = PlayerPrefs.GetInt(IS_SHINY_SAVE_LABEL) == 1;
+    }
+
+    public void LoadMainScene() {
+        SceneManager.LoadScene(MAIN_SCENE_NAME);
+    }
+
+    public void LoadGame() {
+        LoadData();
+        LoadMainScene();
+    }
+
+    private void InitializePokemonIfNeeded(Scene scene, LoadSceneMode loadSceneMode) {
+        if (scene.name == MAIN_SCENE_NAME) {
+            if (currentPokemonNumber > 0) {
+                EventManager.TriggerGenerateTargetPokemonFromSaveData(currentPokemonNumber);
+                EventManager.TriggerBroadcastLevel(level);
+                EventManager.TriggerBroadcastStarsAmount(starsAmount);
+                EventManager.TriggerBroadcastShinyInfo(isShiny);
+            } else {
+                PlayerPrefs.DeleteAll();
+            }
+        }
     }
 
 }
