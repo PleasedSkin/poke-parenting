@@ -9,11 +9,11 @@ public class EventManager
     public static event Action<string> ChangeTopLevelCommandMenuRequired;
     public static event Action<BehaviorStateEnum, string> ChangeDetailedCommandMenuRequired;
     public static event Action<int> SelectDetailedCommandMenuItem;
-    public static event Action<int> BroadcastLevel;
+    public static event Action<int, bool> BroadcastLevel;
     public static event Action<string> BroadcastName;
     public static event Action<int> BroadcastPokemonNumber;
     public static event Action<Sprite, bool> BroadcastPokemonSprite;
-    public static event Action<int> BroadcastStarsAmount;
+    public static event Action<int, bool> BroadcastStarsAmount;
     public static event Action ReturnRequired;
     public static event Action ResetPokemon;
     public static event Action GenerateNewPokemon;
@@ -40,8 +40,8 @@ public class EventManager
         SelectDetailedCommandMenuItem?.Invoke(levelsAmount);
     }
 
-    public static void TriggerBroadcastLevel(int level) {
-        BroadcastLevel?.Invoke(level);
+    public static void TriggerBroadcastLevel(int level, bool isLoadingDataContext = false) {
+        BroadcastLevel?.Invoke(level, isLoadingDataContext);
     }
 
     public static void TriggerBroadcastName(string name) {
@@ -68,8 +68,8 @@ public class EventManager
         BroadcastPokemonSprite?.Invoke(sprite, isEvolving);
     }
 
-    public static void TriggerBroadcastStarsAmount(int starsAmount) {
-        BroadcastStarsAmount?.Invoke(starsAmount);
+    public static void TriggerBroadcastStarsAmount(int starsAmount, bool isLoadingDataContext = false) {
+        BroadcastStarsAmount?.Invoke(starsAmount, isLoadingDataContext);
     }
 
     public static void TriggerDisplayLoadingSprite() {

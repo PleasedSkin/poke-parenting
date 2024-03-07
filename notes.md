@@ -27,10 +27,10 @@ Modèle
 
 
 --> TODO 
-    -> étoile effet "reflet pièce via un shader"
     -> sons
         -> évolution
         -> shiny
         -> gain niveau
         -> perte niveau
         -> écran titre ?
+--> il aurait fallu créer le projet en URP direct ça aurait gagné du temps

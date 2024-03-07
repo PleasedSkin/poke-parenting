@@ -43,8 +43,8 @@ public class PokemonHUD : MonoBehaviour
 
     private bool isPokemonShiny;
 
-    private int currentLevel = -1; 
-    private int currentStarsAmount = -1; 
+    private int currentLevel; 
+    private int currentStarsAmount; 
 
 
     void OnEnable() {
@@ -57,16 +57,16 @@ public class PokemonHUD : MonoBehaviour
         EventManager.BroadcastShinyInfo += DisplayShinyParticles;
     }
 
-    private void UpdateLevelLabel(int level) {
+    private void UpdateLevelLabel(int level, bool isLoadingDataContext) {
         levelLabelComponent.SetText($"Niveau : {level}");
-        StartCoroutine(GiveJuiceToLevelChange(level));
+        StartCoroutine(GiveJuiceToLevelChange(level, isLoadingDataContext));
     }
 
-    private IEnumerator GiveJuiceToLevelChange(int newLevel) {
+    private IEnumerator GiveJuiceToLevelChange(int newLevel, bool isLoadingDataContext) {
         const float duration = 0.3f;
         const float initialFontSize = 30;
         var initialColor = Color.white;
-        if (currentLevel != -1) {
+        if (!isLoadingDataContext) {
             if (newLevel > currentLevel) {
                 levelLabelComponent.fontSize = 35;
                 levelLabelComponent.color = new Color(0.2080649f, 0.4716f, 0.1935f, 1);
@@ -89,15 +89,15 @@ public class PokemonHUD : MonoBehaviour
         nameLabelComponent.SetText(name);
     }
 
-    private void UpdateStarsLabel(int starsAmount) {
+    private void UpdateStarsLabel(int starsAmount, bool isLoadingDataContext) {
         starsLabelComponent.SetText($" : {starsAmount}");
-        StartCoroutine(GiveJuiceToStarsAmountChange(starsAmount));
+        StartCoroutine(GiveJuiceToStarsAmountChange(starsAmount, isLoadingDataContext));
     }
 
-    private IEnumerator GiveJuiceToStarsAmountChange(int newStarsAmount) {
+    private IEnumerator GiveJuiceToStarsAmountChange(int newStarsAmount, bool isLoadingDataContext) {
         const float duration = 0.3f;
         const float initialFontSize = 24;
-        if (currentStarsAmount != -1) {
+        if (!isLoadingDataContext) {
             starAnimator.Play("StarGain");
             starsLabelComponent.fontSize = 30;
             yield return new WaitForSeconds(duration);

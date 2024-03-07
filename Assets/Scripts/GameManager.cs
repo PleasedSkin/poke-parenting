@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 [Serializable]
 public class GameManager : MonoBehaviour
 {
+    
+    public static GameManager Instance { get; private set;}
     private static readonly string MAIN_SCENE_NAME = "MainScene";
     
     // Save data labels
@@ -23,6 +25,13 @@ public class GameManager : MonoBehaviour
 
     void Awake() {
        DontDestroyOnLoad(gameObject); 
+
+        if (Instance != null && Instance != this) {
+            Destroy(this);
+        } else {
+            Instance = this;
+        }
+
     }
 
     void OnEnable() {
