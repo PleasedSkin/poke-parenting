@@ -24,14 +24,12 @@ public class GameManager : MonoBehaviour
     private Dictionary<int, int> evolutionDictionary = new Dictionary<int, int>();
 
     void Awake() {
-       DontDestroyOnLoad(gameObject); 
-
         if (Instance != null && Instance != this) {
-            Destroy(this);
+            Destroy(this.gameObject);
         } else {
             Instance = this;
+            DontDestroyOnLoad(gameObject); 
         }
-
     }
 
     void OnEnable() {
@@ -163,8 +161,8 @@ public class GameManager : MonoBehaviour
         if (scene.name == MAIN_SCENE_NAME) {
             if (currentPokemonNumber > 0) {
                 EventManager.TriggerGenerateTargetPokemonFromSaveData(currentPokemonNumber);
-                EventManager.TriggerBroadcastLevel(level);
-                EventManager.TriggerBroadcastStarsAmount(starsAmount);
+                EventManager.TriggerBroadcastLevel(level, true);
+                EventManager.TriggerBroadcastStarsAmount(starsAmount, true);
                 EventManager.TriggerBroadcastShinyInfo(isShiny);
             } else {
                 PlayerPrefs.DeleteAll();
