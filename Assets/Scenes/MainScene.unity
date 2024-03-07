@@ -372,7 +372,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9b3126ab541287c47923d483b695dab7, type: 2}
+  - {fileID: 2100000, guid: a303adca37187d348bcc68fa07fbce00, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -393,14 +393,14 @@ ParticleSystemRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0.04
   m_MaxParticleSize: 0.04
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 2
+  m_LengthScale: 1
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
@@ -559,7 +559,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 4
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -677,7 +677,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.15
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1061,7 +1061,7 @@ ParticleSystem:
     radiusThickness: 1
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: -1}
-    m_Rotation: {x: 0, y: 0, z: 0}
+    m_Rotation: {x: 180, y: 180, z: 0}
     m_Scale: {x: 1, y: 1, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
@@ -1204,7 +1204,7 @@ ParticleSystem:
       speed:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 2
+        scalar: 1.5
         minScalar: 1
         maxCurve:
           serializedVersion: 2
@@ -1638,7 +1638,7 @@ ParticleSystem:
     curve:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.7853982
+      scalar: 0
       minScalar: 0.7853982
       maxCurve:
         serializedVersion: 2
@@ -5158,7 +5158,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -5318,8 +5318,11 @@ MonoBehaviour:
   loadingImage: {fileID: 1968617408}
   defaultPokemonSprite: {fileID: 21300000, guid: 596d9a994ad521045894e9efab94fd25, type: 3}
   starsLabelComponent: {fileID: 1111868531}
+  starAnimator: {fileID: 871168448}
   whiteMaterial: {fileID: 2100000, guid: 0c265aa94a08a2a43b3b586d51efb83a, type: 2}
-  shinyParticleSystem: {fileID: 296680378}
+  starMaterial: {fileID: 2100000, guid: 9b3126ab541287c47923d483b695dab7, type: 2}
+  evolutionMaterial: {fileID: 2100000, guid: a303adca37187d348bcc68fa07fbce00, type: 2}
+  customParticleSystem: {fileID: 296680378}
 --- !u!4 &600487143
 Transform:
   m_ObjectHideFlags: 0
@@ -5526,6 +5529,7 @@ GameObject:
   - component: {fileID: 871168445}
   - component: {fileID: 871168447}
   - component: {fileID: 871168446}
+  - component: {fileID: 871168448}
   m_Layer: 5
   m_Name: StarIcon
   m_TagString: Untagged
@@ -5540,7 +5544,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871168444}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5591,6 +5595,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 871168444}
   m_CullTransparentMesh: 1
+--- !u!95 &871168448
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871168444}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9daf3d6dc40674458b13edd83ad20fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1111868529
 GameObject:
   m_ObjectHideFlags: 0

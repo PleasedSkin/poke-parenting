@@ -27,9 +27,10 @@ Modèle
 
 
 --> TODO 
-    - shader effet si évolution suite évol
-    - shader effet si shiny
-    -> blink si perte niveaux
-    -> animation de "soin" ou de "boost" si niveaux en + avec scale du niveau et des étoiles
-    -> shine étoile quand gain
+    -> étoile effet "reflet pièce via un shader"
     -> sons
+        -> évolution
+        -> shiny
+        -> gain niveau
+        -> perte niveau
+        -> écran titre ?
