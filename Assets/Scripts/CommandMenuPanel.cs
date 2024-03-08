@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -46,19 +46,17 @@ public class CommandMenuPanel : MonoBehaviour
         DeleteChildren();
 
         // On instancie les nouveaux enfants
-        DirectoryInfo dir = new DirectoryInfo("Assets/Resources/ScriptableObjects/" + behaviorLabel);
-		DirectoryInfo[] info = dir.GetDirectories ();
+        string[] names = Resources.LoadAll<MetaComportementScriptableObject>("ScriptableObjects/" + behaviorLabel).Select(obj => obj.label).ToArray();
 
-		foreach (DirectoryInfo f in info)
+		foreach (string name in names)
 		{
-            // Debug.Log(f.Name);
             var menuItemLink = Instantiate(menuItemLinkPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 
             var behaviorState = BehaviorStateUtils.DICO_CORRESPONDANCE_LABEL_BEHAVIOR.GetValueOrDefault(behaviorLabel);
             currentBehaviorState = behaviorState;
 
             menuItemLink.GetComponent<MenuItemLink>().SetBehaviorState(behaviorState);
-            menuItemLink.GetComponent<MenuItemLink>().SetLabel(f.Name);
+            menuItemLink.GetComponent<MenuItemLink>().SetLabel(name);
             menuItemLink.GetComponent<MenuItemLink>().SetCursor(cursor);
             menuItemLink.transform.SetParent(transform, false);
 		}
