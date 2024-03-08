@@ -16,13 +16,26 @@ public class AudioManager : MonoBehaviour
     [SerializeField]
     private AudioClip eggSound;
 
+    [SerializeField]
+    private AudioClip evolutionSound;
+
+    [SerializeField]
+    private AudioClip shinySound;
+
     private int currentLevel;
 
 
     void OnEnable() {
         EventManager.BroadcastLevel += PlayChangeLevelSound;
+        EventManager.GeneratePokemonEvolution += PlayEvolutionSound;
+        EventManager.BroadcastShinyInfo += PlayShinySoundIfRequired;
     }
 
+    void OnDisable() {
+        EventManager.BroadcastLevel -= PlayChangeLevelSound;
+        EventManager.GeneratePokemonEvolution -= PlayEvolutionSound;
+        EventManager.BroadcastShinyInfo -= PlayShinySoundIfRequired;
+    }
 
     private void PlayChangeLevelSound(int newLevel, bool isLoadingDataContext) {
         if (!isLoadingDataContext) {
@@ -39,6 +52,18 @@ public class AudioManager : MonoBehaviour
 
         currentLevel = newLevel;
     }
+
+
+    private void PlayEvolutionSound(int pokemonNumber) {
+        PlayClip(evolutionSound);
+    }
+
+    private void PlayShinySoundIfRequired(bool isShiny) {
+        if (isShiny) {
+            PlayClip(shinySound);
+        }
+    }
+
 
     private void PlayClip(AudioClip clip) {
         audioSource.clip = clip;

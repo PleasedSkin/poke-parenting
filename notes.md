@@ -26,9 +26,4 @@ Modèle
 -> bouton retour pour revenir au menu de départ 
 
 
---> TODO 
-    -> sons
-        -> évolution
-        -> shiny
-        -> écran titre ?
 --> il aurait fallu créer le projet en URP direct ça aurait gagné du temps

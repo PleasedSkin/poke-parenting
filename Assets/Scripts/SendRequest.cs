@@ -12,6 +12,9 @@ public class SendRequest : MonoBehaviour
     [SerializeField]
     private string apiUrl;
 
+    [SerializeField]
+    private int inputPokemonNumberForDebug;
+
     private int currentPokemonNumber;
 
     private bool isShiny = false;
@@ -52,6 +55,9 @@ public class SendRequest : MonoBehaviour
     {
         var rnd = new System.Random();
         currentPokemonNumber  = rnd.Next(1, 1026);
+        if (Debug.isDebugBuild && inputPokemonNumberForDebug > 0) {
+            currentPokemonNumber = inputPokemonNumberForDebug;
+        }  
         EventManager.TriggerBroadcastPokemonNumber(currentPokemonNumber);
         return GetSpecificPokemon(currentPokemonNumber);
     }

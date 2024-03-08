@@ -311,7 +311,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -300}
-  m_SizeDelta: {x: 255, y: 255}
+  m_SizeDelta: {x: 225, y: 225}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &296680375
 MonoBehaviour:
@@ -5368,6 +5368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   apiUrl: https://pokeapi.co/api/v2/
+  inputPokemonNumberForDebug: 0
 --- !u!4 &672453551
 Transform:
   m_ObjectHideFlags: 0
@@ -5615,7 +5616,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17.6, y: 203}
+  m_AnchoredPosition: {x: -18.7, y: 196.9}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &871168446
@@ -5712,7 +5713,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 313.3}
+  m_AnchoredPosition: {x: 4.2, y: 305.3}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 2.995329}
 --- !u!114 &1111868531
@@ -6573,7 +6574,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1952326453}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.23830777, y: 0.5757961, z: 0.594193}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6692,6 +6693,8 @@ MonoBehaviour:
   levelUpSound: {fileID: 8300000, guid: 074a4ff0349215840a0449c680255ff9, type: 3}
   hurtSound: {fileID: 8300000, guid: ee962792f1b4be648a0b9fd9d8c91d4b, type: 3}
   eggSound: {fileID: 8300000, guid: 4f6ef6aec20d98345bfa7664ac780e01, type: 3}
+  evolutionSound: {fileID: 8300000, guid: 48fbf543f25e28d40bef5670dbbbafdd, type: 3}
+  shinySound: {fileID: 8300000, guid: c851e96b4b405934087cdd8837d11332, type: 3}
 --- !u!1 &1968617406
 GameObject:
   m_ObjectHideFlags: 0
