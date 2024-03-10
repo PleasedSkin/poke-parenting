@@ -27,3 +27,7 @@ Modèle
 
 
 --> il aurait fallu créer le projet en URP direct ça aurait gagné du temps
+
+
+TODO : 
+- si levels négatifs => même principe qu'étoiles mais avec autre objet et si levels négatifs, on inverse les couleurs (ou fond rose) + musique angoissante (lavandia)

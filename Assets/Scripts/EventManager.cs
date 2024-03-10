@@ -14,6 +14,7 @@ public class EventManager
     public static event Action<int> BroadcastPokemonNumber;
     public static event Action<Sprite, bool> BroadcastPokemonSprite;
     public static event Action<int, bool> BroadcastStarsAmount;
+    public static event Action<int, bool> BroadcastDropsAmount;
     public static event Action ReturnRequired;
     public static event Action ResetPokemon;
     public static event Action GenerateNewPokemon;
@@ -70,6 +71,10 @@ public class EventManager
 
     public static void TriggerBroadcastStarsAmount(int starsAmount, bool isLoadingDataContext = false) {
         BroadcastStarsAmount?.Invoke(starsAmount, isLoadingDataContext);
+    }
+
+    public static void TriggerBroadcastDropsAmount(int dropsAmount, bool isLoadingDataContext = false) {
+        BroadcastDropsAmount?.Invoke(dropsAmount, isLoadingDataContext);
     }
 
     public static void TriggerDisplayLoadingSprite() {

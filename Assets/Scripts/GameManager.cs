@@ -13,11 +13,13 @@ public class GameManager : MonoBehaviour
     // Save data labels
     private static readonly string LEVEL_SAVE_LABEL = "Level";
     private static readonly string STARS_AMOUNT_SAVE_LABEL = "StarsAmount";
+    private static readonly string DROPS_AMOUNT_SAVE_LABEL = "DropsAmount";
     private static readonly string POKEMON_NUMBER_SAVE_LABEL = "PokemonNumber";
     private static readonly string IS_SHINY_SAVE_LABEL = "IsShiny";
 
     private int level = 0;
     private int starsAmount = 0;
+    private int dropsAmount = 0;
     private int currentPokemonNumber = 0;
     private bool isShiny = false;
 
@@ -73,7 +75,7 @@ public class GameManager : MonoBehaviour
     private void SetLevel(int levelsAmount) {
         var oldLevel = level;
         level += levelsAmount;
-        level = Mathf.Clamp(level, 0, 100);
+        level = Mathf.Clamp(level, -100, 100);
         EventManager.TriggerBroadcastLevel(level);
         PlayerPrefs.SetInt(LEVEL_SAVE_LABEL, level);
 
@@ -92,9 +94,18 @@ public class GameManager : MonoBehaviour
             EventManager.TriggerResetPokemon();
         } else if (oldLevel == 100 && newLevel == 100) {
             HandlePokemonAchievment();
+        } else if (oldLevel >= 0 && newLevel < 0) {
+            HandlePokemonDecline();
+        } else if (oldLevel == -100 && newLevel == -100) {
+            HandlePokemonFailure();
         } else {
             HandlePossibleEvolution();
         }	
+    }
+
+    private void HandlePokemonDecline() {
+        EventManager.TriggerResetPokemon();
+        // TODO : musique qui change, fond qui change + PENSER au revert si on revient dans le vert
     }
 
     private void HandlePokemonAchievment() {
@@ -105,6 +116,15 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(STARS_AMOUNT_SAVE_LABEL, starsAmount);
         SaveData();
         EventManager.TriggerBroadcastStarsAmount(starsAmount);
+    }
+
+    private void HandlePokemonFailure() {
+        level = 0;
+        EventManager.TriggerBroadcastLevel(level);
+        dropsAmount += 1;
+        PlayerPrefs.SetInt(DROPS_AMOUNT_SAVE_LABEL, dropsAmount);
+        SaveData();
+        EventManager.TriggerBroadcastDropsAmount(dropsAmount);
     }
 
     private void HandlePossibleEvolution() {
@@ -146,6 +166,7 @@ public class GameManager : MonoBehaviour
     private void LoadData() {
         level = PlayerPrefs.GetInt(LEVEL_SAVE_LABEL);
         starsAmount = PlayerPrefs.GetInt(STARS_AMOUNT_SAVE_LABEL);
+        dropsAmount = PlayerPrefs.GetInt(DROPS_AMOUNT_SAVE_LABEL);
         currentPokemonNumber = PlayerPrefs.GetInt(POKEMON_NUMBER_SAVE_LABEL);
         isShiny = PlayerPrefs.GetInt(IS_SHINY_SAVE_LABEL) == 1;
     }
@@ -167,6 +188,7 @@ public class GameManager : MonoBehaviour
                 }
                 EventManager.TriggerBroadcastLevel(level, true);
                 EventManager.TriggerBroadcastStarsAmount(starsAmount, true);
+                EventManager.TriggerBroadcastDropsAmount(dropsAmount, true);
                 EventManager.TriggerBroadcastShinyInfo(isShiny);
             } else {
                 PlayerPrefs.DeleteAll();

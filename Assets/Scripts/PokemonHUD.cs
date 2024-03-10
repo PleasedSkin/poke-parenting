@@ -30,6 +30,12 @@ public class PokemonHUD : MonoBehaviour
     private Animator starAnimator;
 
     [SerializeField]
+    private TextMeshProUGUI dropsLabelComponent;
+
+    [SerializeField]
+    private Animator dropAnimator;
+
+    [SerializeField]
     private Material whiteMaterial;
 
     [SerializeField]
@@ -44,7 +50,6 @@ public class PokemonHUD : MonoBehaviour
     private bool isPokemonShiny;
 
     private int currentLevel; 
-    private int currentStarsAmount; 
 
 
     void OnEnable() {
@@ -52,6 +57,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.BroadcastName += UpdateNameLabel;
         EventManager.BroadcastPokemonSprite += UpdatePokemonSprite;
         EventManager.BroadcastStarsAmount += UpdateStarsLabel;
+        EventManager.BroadcastDropsAmount += UpdateDropsLabel;
         EventManager.ResetPokemon += ResetPokemon;
         EventManager.DisplayLoadingSprite += DisplayLoadingSprite;
         EventManager.BroadcastShinyInfo += DisplayShinyParticles;
@@ -90,22 +96,34 @@ public class PokemonHUD : MonoBehaviour
     }
 
     private void UpdateStarsLabel(int starsAmount, bool isLoadingDataContext) {
-        starsLabelComponent.SetText($" : {starsAmount}");
-        StartCoroutine(GiveJuiceToStarsAmountChange(starsAmount, isLoadingDataContext));
+        UpdateStarsOrDropsLabel(starsAmount, isLoadingDataContext, true);
     }
 
-    private IEnumerator GiveJuiceToStarsAmountChange(int newStarsAmount, bool isLoadingDataContext) {
+    private void UpdateDropsLabel(int dropsAmount, bool isLoadingDataContext) {
+        UpdateStarsOrDropsLabel(dropsAmount, isLoadingDataContext, false);
+    }
+
+    private void UpdateStarsOrDropsLabel(int amount, bool isLoadingDataContext, bool isStarsRelated) {
+        var text = $" : {amount}";
+        var relevantComponent = isStarsRelated ? starsLabelComponent : dropsLabelComponent;
+        relevantComponent.SetText(text);
+        StartCoroutine(GiveJuiceToStarsOrDropsAmountChange(isLoadingDataContext, isStarsRelated));
+    }
+
+    private IEnumerator GiveJuiceToStarsOrDropsAmountChange(bool isLoadingDataContext, bool isStarsRelated) {
         const float duration = 0.3f;
         const float initialFontSize = 24;
+        var relevantComponent = isStarsRelated ? starsLabelComponent : dropsLabelComponent;
+        var relevantAnimator = isStarsRelated ? starAnimator : dropAnimator;
+        var gainAnimation = isStarsRelated ? "StarGain" : "DropGain";
         if (!isLoadingDataContext) {
-            starAnimator.Play("StarGain");
-            starsLabelComponent.fontSize = 30;
+            relevantAnimator.Play(gainAnimation);
+            relevantComponent.fontSize = 30;
             yield return new WaitForSeconds(duration);
-            starsLabelComponent.fontSize = initialFontSize;
+            relevantComponent.fontSize = initialFontSize;
             yield return new WaitForSeconds(0.7f);
-            starAnimator.Play("Idle");
+            relevantAnimator.Play("Idle");
         }
-        currentStarsAmount = newStarsAmount;
         yield return null;
     }
 
@@ -171,6 +189,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.BroadcastName -= UpdateNameLabel;
         EventManager.BroadcastPokemonSprite -= UpdatePokemonSprite;
         EventManager.BroadcastStarsAmount -= UpdateStarsLabel;
+        EventManager.BroadcastDropsAmount -= UpdateDropsLabel;
         EventManager.ResetPokemon -= ResetPokemon;
         EventManager.DisplayLoadingSprite -= DisplayLoadingSprite;
         EventManager.BroadcastShinyInfo -= DisplayShinyParticles;
