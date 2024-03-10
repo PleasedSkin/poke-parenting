@@ -76,9 +76,9 @@ public class GameManager : MonoBehaviour
         level = Mathf.Clamp(level, 0, 100);
         EventManager.TriggerBroadcastLevel(level);
         PlayerPrefs.SetInt(LEVEL_SAVE_LABEL, level);
-        SaveData();
 
         ReactToLevelChange(oldLevel, level);
+        SaveData();
     }
 
 
@@ -87,6 +87,8 @@ public class GameManager : MonoBehaviour
         if (oldLevel == 0 && newLevel > 0) {
             EventManager.TriggerGenerateNewPokemon();
         } else if (level == 0) {
+            UpdatePokemonNumber(0);
+            isShiny = false;
             EventManager.TriggerResetPokemon();
         } else if (oldLevel == 100 && newLevel == 100) {
             HandlePokemonAchievment();
@@ -159,8 +161,10 @@ public class GameManager : MonoBehaviour
 
     private void InitializePokemonIfNeeded(Scene scene, LoadSceneMode loadSceneMode) {
         if (scene.name == MAIN_SCENE_NAME) {
-            if (currentPokemonNumber > 0) {
-                EventManager.TriggerGenerateTargetPokemonFromSaveData(currentPokemonNumber);
+            if (currentPokemonNumber >= 0) {
+                if (currentPokemonNumber > 0) {
+                    EventManager.TriggerGenerateTargetPokemonFromSaveData(currentPokemonNumber);
+                }
                 EventManager.TriggerBroadcastLevel(level, true);
                 EventManager.TriggerBroadcastStarsAmount(starsAmount, true);
                 EventManager.TriggerBroadcastShinyInfo(isShiny);
