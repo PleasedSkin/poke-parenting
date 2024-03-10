@@ -86,7 +86,8 @@ public class GameManager : MonoBehaviour
 
  
     private void ReactToLevelChange(int oldLevel, int newLevel) {
-        if (oldLevel == 0 && newLevel > 0) {
+        if (oldLevel <= 0 && newLevel > 0) {
+            EventManager.TriggerPokemonRise();
             EventManager.TriggerGenerateNewPokemon();
         } else if (level == 0) {
             UpdatePokemonNumber(0);
@@ -106,7 +107,6 @@ public class GameManager : MonoBehaviour
     private void HandlePokemonDecline() {
         EventManager.TriggerResetPokemon();
         EventManager.TriggerPokemonDecline();
-        // TODO : musique qui change, fond qui change + PENSER au revert si on revient dans le vert
     }
 
     private void HandlePokemonAchievment() {
@@ -188,6 +188,10 @@ public class GameManager : MonoBehaviour
                     EventManager.TriggerGenerateTargetPokemonFromSaveData(currentPokemonNumber);
                 }
                 EventManager.TriggerBroadcastLevel(level, true);
+                if (level < 0) {
+                    EventManager.TriggerPokemonDecline();
+                }
+
                 EventManager.TriggerBroadcastStarsAmount(starsAmount, true);
                 EventManager.TriggerBroadcastDropsAmount(dropsAmount, true);
                 EventManager.TriggerBroadcastShinyInfo(isShiny);

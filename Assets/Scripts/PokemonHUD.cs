@@ -68,6 +68,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.DisplayLoadingSprite += DisplayLoadingSprite;
         EventManager.BroadcastShinyInfo += DisplayShinyParticles;
         EventManager.PokemonDecline += ReactToPokemonDecline;
+        EventManager.PokemonRise += ReactToPokemonRise;
     }
 
     private void UpdateLevelLabel(int level, bool isLoadingDataContext) {
@@ -194,6 +195,10 @@ public class PokemonHUD : MonoBehaviour
         canvasImage.color = DECLINE_COLOR;
     }
 
+    private void ReactToPokemonRise() {
+        canvasImage.color = DEFAULT_COLOR;
+    }
+
 
     void OnDisable() {
         EventManager.BroadcastLevel -= UpdateLevelLabel;
@@ -205,6 +210,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.DisplayLoadingSprite -= DisplayLoadingSprite;
         EventManager.BroadcastShinyInfo -= DisplayShinyParticles;
         EventManager.PokemonDecline -= ReactToPokemonDecline;
+        EventManager.PokemonRise -= ReactToPokemonRise;
     }
 
 }

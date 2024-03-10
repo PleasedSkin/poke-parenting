@@ -5287,7 +5287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d075e20d4bf3c143bc01f09d4458aea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 307083459}
   pokemonDeclineSong: {fileID: 8300000, guid: 9489237121090b4419edbfe61ce3a36f, type: 3}
+  defaultPokemonSong: {fileID: 8300000, guid: 22fc124f712537240b5e8b06b054f7fd, type: 3}
 --- !u!1 &315774140
 GameObject:
   m_ObjectHideFlags: 0
