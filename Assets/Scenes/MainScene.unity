@@ -5156,6 +5156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 307083460}
   - component: {fileID: 307083459}
+  - component: {fileID: 307083461}
   m_Layer: 0
   m_Name: MainAudio
   m_TagString: Untagged
@@ -5274,6 +5275,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &307083461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 307083458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d075e20d4bf3c143bc01f09d4458aea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pokemonDeclineSong: {fileID: 8300000, guid: 9489237121090b4419edbfe61ce3a36f, type: 3}
 --- !u!1 &315774140
 GameObject:
   m_ObjectHideFlags: 0
@@ -5551,6 +5565,7 @@ MonoBehaviour:
   starMaterial: {fileID: 2100000, guid: 9b3126ab541287c47923d483b695dab7, type: 2}
   evolutionMaterial: {fileID: 2100000, guid: a303adca37187d348bcc68fa07fbce00, type: 2}
   customParticleSystem: {fileID: 296680378}
+  canvasImage: {fileID: 1906203780}
 --- !u!4 &600487143
 Transform:
   m_ObjectHideFlags: 0

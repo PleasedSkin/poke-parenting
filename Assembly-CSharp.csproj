@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\DetailedMenuItemLink.cs" />
     <Compile Include="Assets\Scripts\BonusMalusLink.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
+    <Compile Include="Assets\Scripts\MainAudio.cs" />
     <Compile Include="Assets\Scripts\PokemonHUD.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -105,6 +105,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePokemonDecline() {
         EventManager.TriggerResetPokemon();
+        EventManager.TriggerPokemonDecline();
         // TODO : musique qui change, fond qui change + PENSER au revert si on revient dans le vert
     }
 

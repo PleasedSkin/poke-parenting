@@ -7,6 +7,8 @@ public class PokemonHUD : MonoBehaviour
 {
 
     private static readonly string DEFAULT_POKEMON_NAME = "Oeuf";
+    private static readonly Color DEFAULT_COLOR = new Color(0.5843138f, 0.2392157f, 0.2392157f, 1);
+    private static readonly Color DECLINE_COLOR = new Color(0.2f, 0.2f, 0.2f, 1);
 
     [SerializeField]
     private TextMeshProUGUI levelLabelComponent;
@@ -47,6 +49,10 @@ public class PokemonHUD : MonoBehaviour
     [SerializeField]
     private ParticleSystem customParticleSystem;
 
+    [SerializeField]
+    private Image canvasImage;
+
+
     private bool isPokemonShiny;
 
     private int currentLevel; 
@@ -61,6 +67,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.ResetPokemon += ResetPokemon;
         EventManager.DisplayLoadingSprite += DisplayLoadingSprite;
         EventManager.BroadcastShinyInfo += DisplayShinyParticles;
+        EventManager.PokemonDecline += ReactToPokemonDecline;
     }
 
     private void UpdateLevelLabel(int level, bool isLoadingDataContext) {
@@ -183,6 +190,10 @@ public class PokemonHUD : MonoBehaviour
         isPokemonShiny = isShiny;
     }
 
+    private void ReactToPokemonDecline() {
+        canvasImage.color = DECLINE_COLOR;
+    }
+
 
     void OnDisable() {
         EventManager.BroadcastLevel -= UpdateLevelLabel;
@@ -193,6 +204,7 @@ public class PokemonHUD : MonoBehaviour
         EventManager.ResetPokemon -= ResetPokemon;
         EventManager.DisplayLoadingSprite -= DisplayLoadingSprite;
         EventManager.BroadcastShinyInfo -= DisplayShinyParticles;
+        EventManager.PokemonDecline -= ReactToPokemonDecline;
     }
 
 }
