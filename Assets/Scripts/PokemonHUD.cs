@@ -80,7 +80,7 @@ public class PokemonHUD : MonoBehaviour
         const float duration = 0.3f;
         const float initialFontSize = 30;
         var initialColor = Color.white;
-        if (!isLoadingDataContext) {
+        if (!isLoadingDataContext && !(newLevel == 0 && (currentLevel == 100 || currentLevel == -100))) {
             if (newLevel > currentLevel) {
                 levelLabelComponent.fontSize = 35;
                 levelLabelComponent.color = new Color(0.2080649f, 0.4716f, 0.1935f, 1);

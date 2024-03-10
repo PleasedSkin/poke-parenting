@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private int level = 0;
     private int starsAmount = 0;
     private int dropsAmount = 0;
-    private int currentPokemonNumber = 0;
+    private int currentPokemonNumber = -1;
     private bool isShiny = false;
 
     private Dictionary<int, int> evolutionDictionary = new Dictionary<int, int>();
@@ -86,10 +86,11 @@ public class GameManager : MonoBehaviour
 
  
     private void ReactToLevelChange(int oldLevel, int newLevel) {
-        if (oldLevel <= 0 && newLevel > 0) {
+        if (oldLevel <= 0 && newLevel >= 0) {
             EventManager.TriggerPokemonRise();
             EventManager.TriggerGenerateNewPokemon();
         } else if (level == 0) {
+            EventManager.TriggerPokemonRise();
             UpdatePokemonNumber(0);
             isShiny = false;
             EventManager.TriggerResetPokemon();
