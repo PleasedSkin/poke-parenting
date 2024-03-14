@@ -142,7 +142,7 @@ public class GameManager : MonoBehaviour
         if (relevantLevel > 0) {
             var targetPokemonNumber = evolutionDictionary.GetValueOrDefault(relevantLevel);
             if (targetPokemonNumber != currentPokemonNumber && !IsHigherInEvolutionTree()) {
-                currentPokemonNumber = targetPokemonNumber;
+                UpdatePokemonNumber(targetPokemonNumber);
                 EventManager.TriggerGeneratePokemonEvolution(currentPokemonNumber);
             }
         }
