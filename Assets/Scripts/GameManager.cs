@@ -88,7 +88,9 @@ public class GameManager : MonoBehaviour
     private void ReactToLevelChange(int oldLevel, int newLevel) {
         if (oldLevel <= 0 && newLevel >= 0) {
             EventManager.TriggerPokemonRise();
-            EventManager.TriggerGenerateNewPokemon();
+            if (newLevel > 0) {
+                EventManager.TriggerGenerateNewPokemon();
+            }
         } else if (level == 0) {
             EventManager.TriggerPokemonRise();
             UpdatePokemonNumber(0);
@@ -107,12 +109,14 @@ public class GameManager : MonoBehaviour
 
     private void HandlePokemonDecline() {
         EventManager.TriggerResetPokemon();
+        UpdatePokemonNumber(0);
         EventManager.TriggerPokemonDecline();
     }
 
     private void HandlePokemonAchievment() {
         EventManager.TriggerResetPokemon();
-        level = 0;
+        SetLevel(0);
+        UpdatePokemonNumber(0);
         EventManager.TriggerBroadcastLevel(level);
         starsAmount += 1;
         PlayerPrefs.SetInt(STARS_AMOUNT_SAVE_LABEL, starsAmount);
@@ -121,7 +125,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void HandlePokemonFailure() {
-        level = 0;
+        SetLevel(0);
         EventManager.TriggerBroadcastLevel(level);
         dropsAmount += 1;
         PlayerPrefs.SetInt(DROPS_AMOUNT_SAVE_LABEL, dropsAmount);
