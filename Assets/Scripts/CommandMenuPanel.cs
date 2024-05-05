@@ -114,7 +114,7 @@ public class CommandMenuPanel : MonoBehaviour
             bonuMalusLink.transform.SetParent(transform, false);
         };
 
-        CreationLambda(malusLinkPrefab);
+        //CreationLambda(malusLinkPrefab);
         CreationLambda(bonusLinkPrefab);
     }
 

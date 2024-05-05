@@ -76,6 +76,7 @@ public class GameManager : MonoBehaviour
         var oldLevel = level;
         level += levelsAmount;
         level = Mathf.Clamp(level, -100, 100);
+
         EventManager.TriggerBroadcastLevel(level);
         PlayerPrefs.SetInt(LEVEL_SAVE_LABEL, level);
 
@@ -86,25 +87,32 @@ public class GameManager : MonoBehaviour
 
  
     private void ReactToLevelChange(int oldLevel, int newLevel) {
-        if (oldLevel <= 0 && newLevel >= 0) {
+        if (newLevel == 100)
+        {
+            HandlePokemonAchievment();
+        }
+        else if (newLevel == -100)
+        {
+            HandlePokemonFailure();
+        }
+        else if (oldLevel <= 0 && newLevel >= 0) {
             EventManager.TriggerPokemonRise();
             if (newLevel > 0) {
                 EventManager.TriggerGenerateNewPokemon();
             }
-        } else if (level == 0) {
+        } 
+        else if (level == 0) {
             EventManager.TriggerPokemonRise();
             UpdatePokemonNumber(0);
             isShiny = false;
             EventManager.TriggerResetPokemon();
-        } else if (oldLevel == 100 && newLevel == 100) {
-            HandlePokemonAchievment();
-        } else if (oldLevel >= 0 && newLevel < 0) {
+        }
+        else if (oldLevel >= 0 && newLevel < 0) {
             HandlePokemonDecline();
-        } else if (oldLevel == -100 && newLevel == -100) {
-            HandlePokemonFailure();
-        } else {
+        } 
+        else {
             HandlePossibleEvolution();
-        }	
+        }
     }
 
     private void HandlePokemonDecline() {
@@ -115,7 +123,7 @@ public class GameManager : MonoBehaviour
 
     private void HandlePokemonAchievment() {
         EventManager.TriggerResetPokemon();
-        SetLevel(0);
+        SetLevel(-level);
         UpdatePokemonNumber(0);
         EventManager.TriggerBroadcastLevel(level);
         starsAmount += 1;
@@ -125,7 +133,7 @@ public class GameManager : MonoBehaviour
     }
 
     private void HandlePokemonFailure() {
-        SetLevel(0);
+        SetLevel(-level);
         EventManager.TriggerBroadcastLevel(level);
         dropsAmount += 1;
         PlayerPrefs.SetInt(DROPS_AMOUNT_SAVE_LABEL, dropsAmount);
