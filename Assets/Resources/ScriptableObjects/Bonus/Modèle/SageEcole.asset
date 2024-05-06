@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SageEcole
   m_EditorClassIdentifier: 
   label: "Sage \xE0 l'\xE9cole"
-  points: 5
+  points: 10

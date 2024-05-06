@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41376d82778534140b8a0f2c0cc0ca91, type: 3}
   m_Name: SageJournee
   m_EditorClassIdentifier: 
-  label: "Sage journ\xE9e"
-  points: 10
+  label: "Sage toute la journ\xE9e"
+  points: 20

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41376d82778534140b8a0f2c0cc0ca91, type: 3}
   m_Name: Politesse
   m_EditorClassIdentifier: 
-  label: Politesse
+  label: Poli
   points: 1
